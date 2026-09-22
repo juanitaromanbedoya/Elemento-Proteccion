@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from routers import auth, detect
 
 app = FastAPI(
@@ -6,6 +7,16 @@ app = FastAPI(
     description="API para verificar el uso de Elementos de Protección Personal (casco y tapabocas) mediante detección con YOLOv8.",
     version="1.0.0"
 )
+
+# Middleware CORS - permite que el frontend Django (puerto 8001) consuma esta API
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://127.0.0.1:8001", "http://localhost:8001"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(auth.router)
 app.include_router(detect.router)
 

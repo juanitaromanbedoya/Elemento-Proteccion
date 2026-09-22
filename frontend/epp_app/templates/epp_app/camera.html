@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificador EPP</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 30px; }
+        #video, #canvas { border: 2px solid #333; border-radius: 8px; max-width: 90%; }
+        #result { margin-top: 20px; font-size: 18px; font-weight: bold; }
+        .compliant { color: green; }
+        .non-compliant { color: red; }
+        button { padding: 10px 20px; margin: 10px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Verificador de EPP</h1>
+    <video id="video" autoplay playsinline width="480" height="360"></video>
+    <canvas id="canvas" width="480" height="360" style="display:none;"></canvas>
+    <br>
+    <button id="captureBtn">Capturar y Verificar</button>
+    <div id="result"></div>
+
+    <script src="{% static 'js/camera.js' %}"></script>
+</body>
+</html>
