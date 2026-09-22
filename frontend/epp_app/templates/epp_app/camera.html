@@ -4,22 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Verificador EPP</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 30px; }
-        #video, #canvas { border: 2px solid #333; border-radius: 8px; max-width: 90%; }
-        #result { margin-top: 20px; font-size: 18px; font-weight: bold; }
-        .compliant { color: green; }
-        .non-compliant { color: red; }
-        button { padding: 10px 20px; margin: 10px; font-size: 16px; cursor: pointer; }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1>Verificador de EPP</h1>
-    <video id="video" autoplay playsinline width="480" height="360"></video>
-    <canvas id="canvas" width="480" height="360" style="display:none;"></canvas>
-    <br>
-    <button id="captureBtn">Capturar y Verificar</button>
-    <div id="result"></div>
+    <div class="container">
+        <div class="header">
+            <div class="header-icon">🦺</div>
+            <div>
+                <h1>Verificador de EPP</h1>
+                <p>Detecta el uso de casco y tapabocas con visión artificial</p>
+            </div>
+        </div>
+
+        <div class="toggle-group">
+            <button class="toggle-btn active" id="tabUpload">Subir imagen</button>
+            <button class="toggle-btn" id="tabCamera">Cámara en vivo</button>
+        </div>
+
+        <div class="grid">
+            <!-- Panel izquierdo: captura -->
+            <div class="panel">
+                <h2 id="panelTitle">Sube tu imagen</h2>
+                <p class="subtitle" id="panelSubtitle">Selecciona una fotografía para analizarla</p>
+
+                <div class="drop-zone" id="uploadZone">
+                    <div class="hint">Arrastra tu imagen aquí</div>
+                    <div style="font-size:13px; color:#b0678a;">o haz clic para buscarla</div>
+                    <div class="filetypes">JPG, PNG</div>
+                </div>
+                <input type="file" id="fileInput" accept="image/*">
+
+                <div class="drop-zone" id="cameraZone" style="display:none;">
+                    <video id="video" autoplay playsinline></video>
+                </div>
+
+                <button class="action-btn" id="actionBtn">Procesar imagen</button>
+            </div>
+
+            <!-- Panel derecho: resultado -->
+            <div class="panel">
+                <h2>Resultado del análisis</h2>
+                <p class="subtitle">Aquí verás si cumple con el EPP requerido</p>
+                <div class="result-box" id="result">Esperando análisis...</div>
+            </div>
+        </div>
+
+        <canvas id="canvas" width="480" height="360" style="display:none;"></canvas>
+
+        <div class="footer">Verificador EPP · Python, FastAPI y YOLOv8 · Proyecto académico 2026</div>
+    </div>
 
     <script src="{% static 'js/camera.js' %}"></script>
 </body>

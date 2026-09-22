@@ -20,3 +20,20 @@ def login(data: LoginRequest):
         raise HTTPException(status_code=401, detail="Credenciales inválidas")
     token = create_access_token({"sub": user["username"]})
     return TokenResponse(access_token=token)
+from auth.users import create_user
+
+class RegisterRequest(BaseModel):
+    username: str
+    password: str
+
+class RegisterResponse(BaseModel):
+    message: str
+
+@router.post("/register", response_model=RegisterResponse)
+def register(data: RegisterRequest):
+    if len(data.password) < 6:
+        raise HTTPException(status_code=400, detail="La contraseña debe tener al menos 6 caracteres")
+    success = create_user(data.username, data.password)
+    if not success:
+        raise HTTPException(status_code=400, detail="El usuario ya existe")
+    return RegisterResponse(message="Usuario registrado exitosamente")

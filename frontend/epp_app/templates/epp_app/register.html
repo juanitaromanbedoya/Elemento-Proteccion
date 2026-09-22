@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro - Verificador EPP</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h1>🦺 Crear cuenta</h1>
+            <input type="text" id="username" placeholder="Usuario">
+            <input type="password" id="password" placeholder="Contraseña (mín. 6 caracteres)">
+            <input type="password" id="confirmPassword" placeholder="Confirmar contraseña">
+            <button class="action-btn" id="registerBtn" style="margin-top:16px;">Registrarme</button>
+            <div id="error"></div>
+            <div id="success" style="color:#1a7f37; margin-top:12px; font-weight:600;"></div>
+            <p style="margin-top:16px; font-size:14px;">
+                ¿Ya tienes cuenta? <a href="/" style="color:#d6336c; font-weight:600;">Inicia sesión</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="{% static 'js/register.js' %}"></script>
+</body>
+</html>

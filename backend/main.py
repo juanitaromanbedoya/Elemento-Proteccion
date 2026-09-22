@@ -1,12 +1,16 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import auth, detect
+from auth.database import init_db
+
+init_db()  # crea la tabla de usuarios si no existe
 
 app = FastAPI(
     title="EPP Verificador API",
     description="API para verificar el uso de Elementos de Protección Personal (casco y tapabocas) mediante detección con YOLOv8.",
     version="1.0.0"
 )
+# ... el resto sigue igual
 
 # Middleware CORS - permite que el frontend Django (puerto 8001) consuma esta API
 app.add_middleware(

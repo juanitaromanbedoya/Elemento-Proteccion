@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Verificador EPP</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h1>🦺 Verificador de EPP</h1>
+            <input type="text" id="username" placeholder="Usuario">
+            <input type="password" id="password" placeholder="Contraseña">
+            <button class="action-btn" id="loginBtn" style="margin-top:16px;">Ingresar</button>
+            <div id="error"></div>
+            <p style="margin-top:16px; font-size:14px;">
+                ¿No tienes cuenta? <a href="/register/" style="color:#d6336c; font-weight:600;">Regístrate</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="{% static 'js/login.js' %}"></script>
+</body>
+</html>

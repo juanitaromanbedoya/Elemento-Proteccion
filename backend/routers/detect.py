@@ -1,5 +1,6 @@
-from fastapi import APIRouter, UploadFile, File
+from fastapi import APIRouter, UploadFile, File, Depends
 from pydantic import BaseModel
+from auth.jwt_handler import get_current_user
 from services.epp_detector import detect_epp
 from schemas.epp_schema import EPPRulesResponse, EPPRule
 
@@ -16,7 +17,10 @@ class EPPDetectionResponse(BaseModel):
     summary="Detectar uso de EPP en una imagen",
     description="Recibe una imagen (captura de cámara) y retorna si la persona porta casco y tapabocas."
 )
-async def detect_epp_endpoint(file: UploadFile = File(...)):
+async def detect_epp_endpoint(
+    file: UploadFile = File(...),
+    current_user: str = Depends(get_current_user)
+):
     image_bytes = await file.read()
     result = detect_epp(image_bytes)
     return EPPDetectionResponse(**result)
