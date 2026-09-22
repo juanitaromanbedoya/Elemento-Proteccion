@@ -1,4 +1,4 @@
-const BACKEND_URL = "http://127.0.0.1:8000/api/v1/register";
+const BACKEND_URL = API_BASE_URL + "/api/v1/register";
 
 document.getElementById('registerBtn').addEventListener('click', () => {
     const username = document.getElementById('username').value.trim();

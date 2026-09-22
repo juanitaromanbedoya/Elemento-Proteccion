@@ -11,7 +11,7 @@ const cameraZone = document.getElementById('cameraZone');
 const panelTitle = document.getElementById('panelTitle');
 const panelSubtitle = document.getElementById('panelSubtitle');
 
-const BACKEND_URL = "http://127.0.0.1:8000/api/v1/detect-epp";
+const BACKEND_URL = API_BASE_URL + "/api/v1/detect-epp";
 
 const token = localStorage.getItem("access_token");
 if (!token) window.location.href = "/";

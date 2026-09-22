@@ -15,7 +15,7 @@ app = FastAPI(
 # Middleware CORS - permite que el frontend Django (puerto 8001) consuma esta API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:8001", "http://localhost:8001"],
+    allow_origins=["*"],  # ⚠️ temporal - lo restringimos al final con la URL real de Vercel
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

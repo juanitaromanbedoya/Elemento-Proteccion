@@ -1,11 +1,16 @@
+import os
+from dotenv import load_dotenv
 from datetime import datetime, timedelta
 from jose import jwt, JWTError
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
-SECRET_KEY = "cambia-esto-por-una-clave-segura"  # luego la movemos a variable de entorno
-ALGORITHM = "HS256"
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY", "clave-de-respaldo-solo-para-desarrollo")
+ALGORITHM = os.getenv("ALGORITHM", "HS256")
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
+
 
 def create_access_token(data: dict):
     to_encode = data.copy()
