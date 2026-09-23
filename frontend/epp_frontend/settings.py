@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'epp_frontend.wsgi.application'
+
 
 
 # Database
@@ -128,3 +128,6 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+WSGI_APPLICATION = 'epp_frontend.wsgi.application'
+STATIC_ROOT = BASE_DIR / 'staticfiles' 
